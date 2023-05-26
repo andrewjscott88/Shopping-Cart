@@ -92,7 +92,7 @@ const Products = (props) => {
     let item = items.filter((item) => item.name == name);
     console.log(`add to Cart ${JSON.stringify(item)}`);
     setCart([...cart, ...item]);
-    
+
   };
   const deleteCartItem = (index) => {
     let newCart = cart.filter((item, i) => index != i);
@@ -149,8 +149,9 @@ const Products = (props) => {
   };
   const restockProducts = (url) => {
     doFetch(url);
-    let newItems = data.map((item) => {
-      let { name, country, cost, instock } = item;
+    let myData = data.data;
+    let newItems = myData.map((item) => {
+      let { name, country, cost, instock } = item.attributes;
       return { name, country, cost, instock };
     });
     setItems([...items, ...newItems]);
